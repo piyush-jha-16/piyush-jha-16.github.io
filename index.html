@@ -25,6 +25,153 @@
             background: #0a0a0a;
             color: #ffffff;
         }
+
+        /* Loading Screen */
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #0a0a0a;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
+}
+
+.loading-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.logo-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.logo-item {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 12px;
+    animation: logoFloat 3s ease-in-out infinite;
+    transition: all 0.3s ease;
+}
+
+.logo-item:hover {
+    transform: scale(1.1);
+    background: rgba(102, 126, 234, 0.1);
+}
+
+
+
+.logo-item:hover img {
+    filter: brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(230deg);
+}
+
+.logo-item:nth-child(1) { animation-delay: 0.1s; }
+.logo-item:nth-child(2) { animation-delay: 0.2s; }
+.logo-item:nth-child(3) { animation-delay: 0.3s; }
+.logo-item:nth-child(4) { animation-delay: 0.4s; }
+.logo-item:nth-child(5) { animation-delay: 0.5s; }
+.logo-item:nth-child(6) { animation-delay: 0.6s; }
+.logo-item:nth-child(7) { animation-delay: 0.7s; }
+.logo-item:nth-child(8) { animation-delay: 0.8s; }
+
+@keyframes logoFloat {
+    0%, 100% { 
+        transform: translateY(0px) scale(1);
+    }
+    50% { 
+        transform: translateY(-15px) scale(1.05);
+    }
+}
+
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.loading-bar {
+    width: 300px;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+}
+
+.loading-progress {
+    height: 100%;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    width: 0%;
+    transition: width 0.3s ease;
+    border-radius: 3px;
+    position: relative;
+}
+
+.loading-progress::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .logo-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+    
+    .logo-item {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .loading-bar {
+        width: 250px;
+    }
+    
+    h1.text-4xl {
+        font-size: 2rem;
+    }
+}
+
+        /* Competitive Programming section navbar */
+        .navbar-competitive-programming {
+            background: linear-gradient(135deg, 
+                rgba(17, 24, 39, 0.95) 0%, 
+                rgba(31, 41, 55, 0.9) 50%, 
+                rgba(17, 24, 39, 0.95) 100%);
+            border-bottom: 1px solid rgba(75, 85, 99, 0.3);
+            box-shadow: 0 8px 32px rgba(17, 24, 39, 0.4);
+        }
         
         /* Futuristic elements */
         .gradient-text {
@@ -57,7 +204,6 @@
                 radial-gradient(circle at 80% 20%, rgba(118, 75, 162, 0.12) 0%, transparent 40%),
                 radial-gradient(circle at 40% 70%, rgba(79, 172, 254, 0.1) 0%, transparent 40%),
                 radial-gradient(circle at 90% 80%, rgba(240, 147, 251, 0.08) 0%, transparent 40%);
-            animation: gradientShift 8s ease-in-out infinite;
         }
         
         .hero-bg::after {
@@ -71,46 +217,6 @@
                 linear-gradient(45deg, transparent 30%, rgba(102, 126, 234, 0.03) 50%, transparent 70%),
                 linear-gradient(-45deg, transparent 30%, rgba(118, 75, 162, 0.03) 50%, transparent 70%);
             background-size: 200% 200%;
-            animation: backgroundWave 12s linear infinite;
-        }
-        
-        @keyframes gradientShift {
-            0%, 100% { 
-                background: 
-                    radial-gradient(circle at 20% 30%, rgba(102, 126, 234, 0.15) 0%, transparent 40%),
-                    radial-gradient(circle at 80% 20%, rgba(118, 75, 162, 0.12) 0%, transparent 40%),
-                    radial-gradient(circle at 40% 70%, rgba(79, 172, 254, 0.1) 0%, transparent 40%),
-                    radial-gradient(circle at 90% 80%, rgba(240, 147, 251, 0.08) 0%, transparent 40%);
-            }
-            25% { 
-                background: 
-                    radial-gradient(circle at 80% 40%, rgba(102, 126, 234, 0.18) 0%, transparent 45%),
-                    radial-gradient(circle at 20% 80%, rgba(118, 75, 162, 0.15) 0%, transparent 45%),
-                    radial-gradient(circle at 60% 20%, rgba(79, 172, 254, 0.12) 0%, transparent 45%),
-                    radial-gradient(circle at 10% 10%, rgba(240, 147, 251, 0.1) 0%, transparent 45%);
-            }
-            50% { 
-                background: 
-                    radial-gradient(circle at 60% 80%, rgba(102, 126, 234, 0.16) 0%, transparent 42%),
-                    radial-gradient(circle at 40% 10%, rgba(118, 75, 162, 0.13) 0%, transparent 42%),
-                    radial-gradient(circle at 90% 50%, rgba(79, 172, 254, 0.11) 0%, transparent 42%),
-                    radial-gradient(circle at 30% 90%, rgba(240, 147, 251, 0.09) 0%, transparent 42%);
-            }
-            75% { 
-                background: 
-                    radial-gradient(circle at 30% 20%, rgba(102, 126, 234, 0.14) 0%, transparent 38%),
-                    radial-gradient(circle at 70% 60%, rgba(118, 75, 162, 0.11) 0%, transparent 38%),
-                    radial-gradient(circle at 10% 80%, rgba(79, 172, 254, 0.13) 0%, transparent 38%),
-                    radial-gradient(circle at 80% 30%, rgba(240, 147, 251, 0.07) 0%, transparent 38%);
-            }
-        }
-        
-        @keyframes backgroundWave {
-            0% { background-position: 0% 0%, 100% 100%; }
-            25% { background-position: 100% 0%, 0% 100%; }
-            50% { background-position: 100% 100%, 0% 0%; }
-            75% { background-position: 0% 100%, 100% 0%; }
-            100% { background-position: 0% 0%, 100% 100%; }
         }
         
         /* Floating particles */
@@ -118,19 +224,7 @@
             position: absolute;
             background: rgba(102, 126, 234, 0.1);
             border-radius: 50%;
-            animation: float 8s ease-in-out infinite;
             pointer-events: none;
-        }
-        
-        @keyframes float {
-            0%, 100% { 
-                transform: translateY(0px) rotate(0deg);
-                opacity: 0.3;
-            }
-            50% { 
-                transform: translateY(-30px) rotate(180deg);
-                opacity: 0.8;
-            }
         }
         
         /* Card animations */
@@ -165,14 +259,7 @@
         
         /* Timeline styles */
         .timeline-item {
-            opacity: 0;
-            transform: translateY(30px);
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .timeline-item.animate {
-            opacity: 1;
-            transform: translateY(0);
         }
         
         .timeline-line {
@@ -193,7 +280,7 @@
             background: linear-gradient(90deg, #667eea, #764ba2);
             border-radius: 4px;
             width: 0%;
-            transition: width 2s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
         }
         
@@ -205,66 +292,14 @@
             right: 0;
             bottom: 0;
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            animation: shimmer 2s infinite;
-        }
-        
-        @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
         }
         
         /* Glitch effect */
         .glitch {
             position: relative;
-            animation: glitch-main 2s infinite;
-        }
-        
-        .glitch::before,
-        .glitch::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.8;
-        }
-        
-        .glitch::before {
-            animation: glitch-1 0.3s infinite;
-            color: #ff0040;
-            z-index: -1;
-        }
-        
-        .glitch::after {
-            animation: glitch-2 0.3s infinite;
-            color: #00ffff;
-            z-index: -2;
-        }
-        
-        @keyframes glitch-main {
-            0%, 90%, 100% { transform: translate(0); }
-            95% { transform: translate(-2px, 2px); }
-        }
-        
-        @keyframes glitch-1 {
-            0%, 14%, 15%, 49%, 50%, 99%, 100% { transform: translate(0); }
-            15%, 49% { transform: translate(-2px, -1px); }
-        }
-        
-        @keyframes glitch-2 {
-            0%, 20%, 21%, 62%, 63%, 99%, 100% { transform: translate(0); }
-            21%, 62% { transform: translate(2px, 1px); }
         }
         
         /* Typing animation */
-        .typewriter {
-            overflow: hidden;
-            border-right: 3px solid #667eea;
-            white-space: nowrap;
-            animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
-        }
-        
         .typewriter-skills {
             display: inline-block;
             min-height: 1.2em;
@@ -278,48 +313,28 @@
             animation: blink 1s infinite;
         }
         
-        @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-        
         @keyframes blink {
             0%, 50% { opacity: 1; }
             51%, 100% { opacity: 0; }
         }
         
-        /* Scroll animations */
+        /* Smooth scroll animations */
         .fade-in-up {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .fade-in-up.animate {
             opacity: 1;
             transform: translateY(0);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         .fade-in-left {
-            opacity: 0;
-            transform: translateX(-40px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .fade-in-left.animate {
             opacity: 1;
             transform: translateX(0);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         .fade-in-right {
-            opacity: 0;
-            transform: translateX(40px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .fade-in-right.animate {
             opacity: 1;
             transform: translateX(0);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         /* Matrix rain effect */
@@ -338,18 +353,13 @@
         .holographic {
             background: linear-gradient(45deg, transparent 30%, rgba(102, 126, 234, 0.1) 50%, transparent 70%);
             background-size: 200% 200%;
-            animation: hologram 4s linear infinite;
-        }
-        
-        @keyframes hologram {
-            0% { background-position: 0% 0%; }
-            100% { background-position: 200% 200%; }
         }
         
         /* Navigation styles */
         #navbar {
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
+            transition: all 0.3s ease;
         }
         
         /* Default navbar style (for hero section) */
@@ -576,10 +586,54 @@
             .timeline-line {
                 display: none;
             }
+
+            .logo-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Loading Screen -->
+<div id="loading-screen">
+    <div class="loading-content">
+        <h1 class="text-4xl font-bold gradient-text mb-8"></h1>
+        <div class="logo-grid">
+            <div class="logo-item">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++" class="w-10 h-10">
+            </div>
+            <div class="logo-item">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" class="w-10 h-10">
+            </div>
+            <div class="logo-item">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" class="w-10 h-10">
+            </div>
+            <div class="logo-item">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" class="w-10 h-10">
+            </div>
+            <div class="logo-item">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" class="w-10 h-10">
+            </div>
+            <div class="logo-item">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/android/android-original.svg" alt="Android" class="w-10 h-10">
+            </div>
+            <div class="logo-item">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux" class="w-10 h-10">
+            </div>
+            <div class="logo-item">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" alt="Flask" class="w-10 h-10">
+            </div>
+        </div>
+        <div class="loading-container">
+            <div class="loading-bar">
+                <div class="loading-progress" id="loading-progress"></div>
+            </div>
+            <p class="text-gray-400 mt-4">Loading....</p>
+        </div>
+    </div>
+</div>
+
     <!-- Matrix Rain Background -->
     <canvas class="matrix-rain" id="matrix"></canvas>
     
@@ -597,6 +651,7 @@
                     <a href="#education" class="nav-link text-gray-300 hover:text-white">Education</a>
                     <a href="#experience" class="nav-link text-gray-300 hover:text-white">Experience</a>
                     <a href="#projects" class="nav-link text-gray-300 hover:text-white">Projects</a>
+                    <a href="#competitive-programming" class="nav-link text-gray-300 hover:text-white">CP Stats</a>
                     <a href="#skills" class="nav-link text-gray-300 hover:text-white">Skills</a>
                     <a href="#contact" class="nav-link text-gray-300 hover:text-white">Contact</a>
                 </div>
@@ -612,6 +667,7 @@
                 <a href="#education" class="block py-2 text-gray-300 hover:text-white">Education</a>
                 <a href="#experience" class="block py-2 text-gray-300 hover:text-white">Experience</a>
                 <a href="#projects" class="block py-2 text-gray-300 hover:text-white">Projects</a>
+                <a href="#competitive-programming" class="nav-link text-gray-300 hover:text-white">CP Stats</a>
                 <a href="#skills" class="block py-2 text-gray-300 hover:text-white">Skills</a>
                 <a href="#contact" class="block py-2 text-gray-300 hover:text-white">Contact</a>
             </div>
@@ -637,7 +693,7 @@
                         </div>
                         
                         <p class="text-lg text-gray-300 leading-relaxed max-w-xl fade-in-up" style="animation-delay: 0.6s;">
-                            Driven to craft innovative, impactful solutions by leveraging cutting-edge technology. Skilled in C++, Data Structures & Algorithms, Object-Oriented Programming, and Cybersecurity I turn bold ideas into reality—one line of code at a time.
+                            C++ developer with expertise in Data Structures, Algorithms, and Cybersecurity. I build secure, efficient systems that solve complex problems through clean code and strategic technical execution. 
                         </p>
                     </div>
                     
@@ -675,18 +731,18 @@
                                 </div>
                                 
                                 <!-- Decorative elements -->
-                                <div class="absolute top-4 right-4 w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                                <div class="absolute bottom-4 left-4 w-2 h-2 bg-blue-500 rounded-full animate-pulse" style="animation-delay: 1s;"></div>
+                                <div class="absolute top-4 right-4 w-3 h-3 bg-green-500 rounded-full"></div>
+                                <div class="absolute bottom-4 left-4 w-2 h-2 bg-blue-500 rounded-full"></div>
                             </div>
                         </div>
                         
                         <!-- Decorative rings -->
-                        <div class="absolute inset-0 rounded-3xl border-2 border-blue-500/20 animate-pulse"></div>
-                        <div class="absolute -inset-2 rounded-3xl border border-purple-500/10 animate-pulse" style="animation-delay: 0.5s;"></div>
+                        <div class="absolute inset-0 rounded-3xl border-2 border-blue-500/20"></div>
+                        <div class="absolute -inset-2 rounded-3xl border border-purple-500/10"></div>
                         
                         <!-- Floating accent elements -->
-                        <div class="absolute -top-4 -right-4 w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full opacity-80 animate-bounce"></div>
-                        <div class="absolute -bottom-4 -left-4 w-6 h-6 bg-gradient-to-br from-green-500 to-blue-500 rounded-full opacity-60 animate-bounce" style="animation-delay: 1s;"></div>
+                        <div class="absolute -top-4 -right-4 w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full opacity-80"></div>
+                        <div class="absolute -bottom-4 -left-4 w-6 h-6 bg-gradient-to-br from-green-500 to-blue-500 rounded-full opacity-60"></div>
                     </div>
                 </div>
             </div>
@@ -702,18 +758,18 @@
                     <div class="fade-in-left">
                         <h3 class="text-2xl font-semibold mb-6 text-white">Hello! I'm Piyush Jha</h3>
                         <p class="text-gray-300 mb-6 leading-relaxed">
-                            I'm a visionary Computer Science Engineering student passionate about pushing the boundaries of technology. My journey began with curiosity about Cybersecurity and has evolved into expertise in Software Engineering, Android Application Developement, and Agile Developement.
-                        </p>
+                        As a Computer Science student, I bridge technical curiosity with practical execution. Beginning with Cybersecurity fundamentals, I've developed expertise across Software Engineering, Android Development, and Agile practices.       </p>
                         <p class="text-gray-300 mb-6 leading-relaxed">
-                            When I'm not coding the future, you'll find me exploring emerging technologies, contributing to open-source projects, or mentoring the next generation of digital innovators.
+                            Outside of projects, I'm engaged with technology trends, open-source contributions, and mentoring aspiring technologists. My goal is to build secure, efficient systems that solve complex problems through clean code and strategic technical execution.
+
                         </p>
                         <div class="flex flex-wrap gap-4">
                             <div class="flex items-center gap-2">
-                                <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                                <span class="w-2 h-2 bg-green-500 rounded-full"></span>
                                 <span class="text-sm text-gray-300">Available for internships</span>
                             </div>
                             <div class="flex items-center gap-2">
-                                <span class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
+                                <span class="w-2 h-2 bg-blue-500 rounded-full"></span>
                                 <span class="text-sm text-gray-300">Open to collaborations</span>
                             </div>
                         </div>
@@ -865,65 +921,228 @@
                             <span class="px-3 py-1 bg-purple-900 text-purple-200 text-sm rounded-full">Git</span>
                         </div>
                     </div>
-                    
-                
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="py-20 bg-gray-900">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="fade-in-up">
-                <h2 class="text-4xl font-bold text-center mb-16 gradient-text">Featured Projects</h2>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Project 1 -->
-                    <div class="bg-gray-800 rounded-2xl p-6 card-hover holographic">
-                        <div class="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center mb-4 neon-glow">
-                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-3 text-white">Advanced Network Risk Assessment Tool</h3>
-                        <p class="text-gray-300 mb-4">A comprehensive full-stack web application for automated network security assessment and vulnerability scanning on Windows systems.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-blue-900 text-blue-200 text-sm rounded-full">Python</span>
-                            <span class="px-3 py-1 bg-green-900 text-green-200 text-sm rounded-full">FLask</span>
-                            <span class="px-3 py-1 bg-purple-900 text-purple-200 text-sm rounded-full">Javascript</span>
-                            <span class="px-3 py-1 bg-purple-900 text-purple-200 text-sm rounded-full">Json</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <a href="https://github.com/piyush-jha-16/Network-Risk-Assessment-Tool" target="_blank"><button class="text-gray-400 hover:text-gray-300 font-medium">GitHub</button></a>
-                        </div>
-                    </div>
-
-                    <!-- Project 2 -->
-                    <div class="bg-gray-800 rounded-2xl p-6 card-hover holographic">
-                        <div class="w-12 h-12 bg-gradient-to-br from-green-400 to-green-600 rounded-xl flex items-center justify-center mb-4 neon-glow">
-                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-3 text-white">Basic vulnerability Checker</h3>
-                        <p class="text-gray-300 mb-4">A lightweight CLI-based cybersecurity tool for automated system and simple vulnerability detector. It helps detect open ports, connected devices and other risks.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-yellow-900 text-yellow-200 text-sm rounded-full">Python</span>
-                            <span class="px-3 py-1 bg-red-900 text-red-200 text-sm rounded-full">Subprocess</span>
-                            <span class="px-3 py-1 bg-red-900 text-red-200 text-sm rounded-full">Socket</span>
-                            <span class="px-3 py-1 bg-blue-900 text-blue-200 text-sm rounded-full">Colorama</span>
-                        </div>
-                        <div class="flex gap-3">
-
-                            <a href="https://github.com/piyush-jha-16/Basic-Vulnerability-Checker" target="_blank"><button class="text-gray-400 hover:text-gray-300 font-medium">GitHub</button></a>
-                        </div>
-                    </div>
-
-                   
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-gray-900">
+    <div class="max-w-6xl mx-auto px-6">
+        <div class="fade-in-down">
+            <h2 class="text-4xl font-bold text-center mb-16 gradient-text">Featured Projects</h2>
+            
+            <!-- Projects Grid - Enhanced Symmetric Layout -->
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8 md:gap-16 lg:gap-24">
+                <!-- Project 1 - Left -->
+                <div class="bg-gray-800 rounded-2xl p-6 card-hover holographic w-full md:w-5/12 lg:w-2/5">
+                    <div class="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center mb-4 neon-glow">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-white">Advanced Network Risk Assessment Tool</h3>
+                    <p class="text-gray-300 mb-4">A comprehensive full-stack web application for automated network security assessment and vulnerability scanning on Windows systems.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 bg-blue-900 text-blue-200 text-sm rounded-full">Python</span>
+                        <span class="px-3 py-1 bg-green-900 text-green-200 text-sm rounded-full">FLask</span>
+                        <span class="px-3 py-1 bg-purple-900 text-purple-200 text-sm rounded-full">Javascript</span>
+                        <span class="px-3 py-1 bg-purple-900 text-purple-200 text-sm rounded-full">JSON</span>
+                    </div>
+                    <div class="flex gap-3">
+                        <a href="https://github.com/piyush-jha-16/Network-Risk-Assessment-Tool" target="_blank" class="btn-secondary w-full text-center py-2">
+                            GitHub
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 2 - Right -->
+                <div class="bg-gray-800 rounded-2xl p-6 card-hover holographic w-full md:w-5/12 lg:w-2/5">
+                    <div class="w-12 h-12 bg-gradient-to-br from-green-400 to-green-600 rounded-xl flex items-center justify-center mb-4 neon-glow">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-white">Basic vulnerability Checker</h3>
+                    <p class="text-gray-300 mb-4">A lightweight CLI-based cybersecurity tool for automated system and simple vulnerability detector. It helps detect open ports, connected devices and other risks.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 bg-yellow-900 text-yellow-200 text-sm rounded-full">Python</span>
+                        <span class="px-3 py-1 bg-red-900 text-red-200 text-sm rounded-full">Subprocess</span>
+                        <span class="px-3 py-1 bg-red-900 text-red-200 text-sm rounded-full">Socket</span>
+                        <span class="px-3 py-1 bg-blue-900 text-blue-200 text-sm rounded-full">Colorama</span>
+                    </div>
+                    <div class="flex gap-3">
+                        <a href="https://github.com/piyush-jha-16/Basic-Vulnerability-Checker" target="_blank" class="btn-secondary w-full text-center py-2">
+                            GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+
+<!-- Competitive Programming Section - Alternative Layout -->
+    <section id="competitive-programming" class="py-20 bg-black">
+    <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16 gradient-text">Competitive Programming</h2>
+            
+            <!-- Platform Stats - Enhanced Symmetric Layout -->
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8 md:gap-16 lg:gap-24 mb-12">
+                <!-- LeetCode Card - Left -->
+                <div class="bg-gray-800 rounded-2xl p-6 card-hover holographic w-full md:w-5/12 lg:w-2/5">
+                    <!-- LeetCode card content remains the same -->
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-black-400 to-black-600 rounded-xl flex items-center justify-center mr-4 neon-glow">
+                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-white">LeetCode</h3>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex justify-between">
+                            <span class="text-gray-300">Problems Solved</span>
+                            <span class="text-white font-semibold">450+</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-300">Contest Rating</span>
+                            <span class="text-white font-semibold">1689</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-300">Global Rank</span>
+                            <span class="text-white font-semibold">Top 13%</span>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-gray-700">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-green-400">Easy: 129</span>
+                            <span class="text-yellow-400">Medium: 264</span>
+                            <span class="text-red-400">Hard: 60</span>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <a href="https://leetcode.com/u/piyushjha162/" target="_blank" class="btn-secondary w-full text-center py-2">
+                            View Profile
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- CodeChef Card - Right -->
+                <div class="bg-gray-800 rounded-2xl p-6 card-hover holographic w-full md:w-5/12 lg:w-2/5">
+                    <!-- CodeChef card content remains the same -->
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-red-400 to-red-600 rounded-xl flex items-center justify-center mr-4 neon-glow">
+                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M7.234 3.234c-1.562 1.562-1.562 4.094 0 5.656 1.562 1.562 4.094 1.562 5.656 0 1.562-1.562 1.562-4.094 0-5.656-1.562-1.562-4.094-1.562-5.656 0zm9.9 3.516c-1.562 1.562-1.562 4.094 0 5.656 1.562 1.562 4.094 1.562 5.656 0 1.562-1.562 1.562-4.094 0-5.656-1.562-1.562-4.094-1.562-5.656 0zm-9.9 9.9c-1.562 1.562-1.562 4.094 0 5.656 1.562 1.562 4.094 1.562 5.656 0 1.562-1.562 1.562-4.094 0-5.656-1.562-1.562-4.094-1.562-5.656 0zm9.9 3.516c-1.562 1.562-1.562 4.094 0 5.656 1.562 1.562 4.094 1.562 5.656 0 1.562-1.562 1.562-4.094 0-5.656-1.562-1.562-4.094-1.562-5.656 0z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-white">TakeuForward+ (TUF+)</h3>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex justify-between">
+                            <span class="text-gray-300">Problems Solved</span>
+                            <span class="text-white font-semibold">250+</span>
+                        </div>
+                        
+                        <div class="flex justify-between">
+                            <span class="text-gray-300">Leaderboard (Questions+Contest)</span>
+                            <span class="text-white font-semibold">Top 30%</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-300">Contest Rating</span>
+                            <span class="text-white font-semibold">- NA -</span>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-gray-700">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-green-400">Easy: 134</span>
+                            <span class="text-yellow-400">Medium: 84</span>
+                            <span class="text-red-400">Hard: 22</span>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <a href="https://takeuforward.org/plus/profile/piyushjha16" target="_blank" class="btn-secondary w-full text-center py-2">
+                            View Profile
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contest Performance section remains the same -->
+            <div class="bg-gray-800 rounded-2xl p-8 card-hover fade-in-up">
+                <h3 class="text-2xl font-semibold mb-6 text-center text-white">Contest Performance</h3>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4 text-blue-400">Recent Achievements</h4>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <span class="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                <span class="text-gray-300">Secured Global Rank 353 in LeetCode Weekly Contest 473</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="w-2 h-2 bg-yellow-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                <span class="text-gray-300">Contributed a new question in Leetcode</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                <span class="text-gray-300">Solved 400+ problems on LeetCode with 70% acceptance rate</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="w-2 h-2 bg-purple-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                <span class="text-gray-300">Ranked #5 in Cumulative Leaderboard (CP + Dev)</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4 text-green-400">Problem Solving Focus</h4>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-gray-300">Data Structures</span>
+                                    <span class="text-white font-semibold">85%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="85"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-gray-300">Algorithms</span>
+                                    <span class="text-white font-semibold">80%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="80"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-gray-300">Binary Search + Two Pointers</span>
+                                    <span class="text-white font-semibold">70%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="70"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-gray-300">Dynamic Programming</span>
+                                    <span class="text-white font-semibold">65%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="65"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+
     <!-- Skills Section -->
-    <section id="skills" class="py-20 bg-black">
+    <section id="skills" class="py-20 bg-gray-900">
         <div class="max-w-6xl mx-auto px-6">
             <div class="fade-in-up">
                 <h2 class="text-4xl font-bold text-center mb-16 gradient-text">Skills & Technologies</h2>
@@ -1059,7 +1278,7 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-gray-900">
+    <section id="contact" class="py-20 bg-black">
         <div class="max-w-4xl mx-auto px-6">
             <div class="fade-in-up">
                 <h2 class="text-4xl font-bold text-center mb-16 gradient-text">Connect With The Future</h2>
@@ -1122,13 +1341,34 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-black py-8 border-t border-gray-800">
+    <footer class="bg-gray-900 py-8 border-t border-gray-800">
         <div class="max-w-6xl mx-auto px-6 text-center">
             <p class="text-gray-400">© 2025 Piyush Jha. Cybersecurity | DSA | Python</p>
         </div>
     </footer>
 
     <script>
+        // Loading Screen
+        const loadingScreen = document.getElementById('loading-screen');
+        const loadingProgress = document.getElementById('loading-progress');
+        
+        // Simulate loading progress
+        let progress = 0;
+        const loadingInterval = setInterval(() => {
+            progress += Math.random() * 15;
+            if (progress >= 100) {
+                progress = 100;
+                clearInterval(loadingInterval);
+                setTimeout(() => {
+                    loadingScreen.style.opacity = '0';
+                    loadingScreen.style.visibility = 'hidden';
+                    // Initialize animations after loading
+                    initializeAnimations();
+                }, 500);
+            }
+            loadingProgress.style.width = progress + '%';
+        }, 200);
+
         // Mobile menu toggle
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -1199,55 +1439,80 @@
         // Create floating particles
         function createParticles() {
             const particlesContainer = document.getElementById('particles-container');
-            const particleCount = 30;
+            const particleCount = 15; // Reduced for better performance
             
             for(let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 particle.style.left = Math.random() * 100 + '%';
                 particle.style.top = Math.random() * 100 + '%';
-                particle.style.width = Math.random() * 4 + 2 + 'px';
+                particle.style.width = Math.random() * 3 + 1 + 'px';
                 particle.style.height = particle.style.width;
-                particle.style.animationDelay = Math.random() * 8 + 's';
-                particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
+                particle.style.opacity = Math.random() * 0.3 + 0.1;
                 particlesContainer.appendChild(particle);
             }
         }
         
         createParticles();
 
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry, index) => {
-                if (entry.isIntersecting) {
-                    // Add staggered delay for multiple elements
-                    setTimeout(() => {
-                        entry.target.classList.add('animate');
-                        
-                        // Animate skill bars
-                        if (entry.target.classList.contains('skill-category')) {
-                            const skillBars = entry.target.querySelectorAll('.skill-progress');
-                            skillBars.forEach((bar, barIndex) => {
-                                const width = bar.getAttribute('data-width');
-                                setTimeout(() => {
-                                    bar.style.width = width + '%';
-                                }, barIndex * 200 + 500);
-                            });
-                        }
-                    }, index * 100);
-                }
+        // Initialize animations after loading
+        function initializeAnimations() {
+            // Animate skill bars
+            document.querySelectorAll('.skill-progress').forEach(bar => {
+                const width = bar.getAttribute('data-width');
+                setTimeout(() => {
+                    bar.style.width = width + '%';
+                }, 500);
             });
-        }, observerOptions);
 
-        // Observe all animated elements
-        document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right, .timeline-item, .skill-category').forEach(el => {
-            observer.observe(el);
-        });
+            // Dynamic skills typewriter animation
+            const skillsElement = document.getElementById('typewriter-skills');
+            const skills = [
+                'Cybersecurity',
+                'Software Engineer', 
+                'Agile Developer',
+                'Application Developer',
+                'Competitive Programming ',
+            ];
+            
+            let currentSkillIndex = 0;
+            let currentCharIndex = 0;
+            let isDeleting = false;
+            
+            function typeSkills() {
+                const currentSkill = skills[currentSkillIndex];
+                
+                if (isDeleting) {
+                    // Remove characters
+                    skillsElement.textContent = currentSkill.substring(0, currentCharIndex - 1);
+                    currentCharIndex--;
+                    
+                    if (currentCharIndex === 0) {
+                        isDeleting = false;
+                        currentSkillIndex = (currentSkillIndex + 1) % skills.length;
+                        setTimeout(typeSkills, 500); // Pause before typing next skill
+                    } else {
+                        setTimeout(typeSkills, 50); // Faster deletion
+                    }
+                } else {
+                    // Add characters
+                    skillsElement.textContent = currentSkill.substring(0, currentCharIndex + 1);
+                    currentCharIndex++;
+                    
+                    if (currentCharIndex === currentSkill.length) {
+                        setTimeout(() => {
+                            isDeleting = true;
+                            typeSkills();
+                        }, 2000); // Pause before deleting
+                    } else {
+                        setTimeout(typeSkills, 100); // Typing speed
+                    }
+                }
+            }
+            
+            // Start the typewriter effect
+            setTimeout(typeSkills, 1000);
+        }
 
         // Dynamic navbar styling and active link highlighting
         window.addEventListener('scroll', () => {
@@ -1268,7 +1533,7 @@
             });
 
             // Remove all navbar classes
-            navbar.classList.remove('navbar-hero', 'navbar-about', 'navbar-education', 'navbar-experience', 'navbar-projects', 'navbar-skills', 'navbar-contact');
+            navbar.classList.remove('navbar-hero', 'navbar-about', 'navbar-education', 'navbar-experience', 'navbar-projects', 'navbar-skills', 'navbar-contact', 'navbar-competitive-programming');
             
             // Add appropriate navbar class based on current section
             if (current) {
@@ -1292,65 +1557,6 @@
             navbar.classList.add('navbar-hero');
         });
 
-        // Dynamic skills typewriter animation
-        const skillsElement = document.getElementById('typewriter-skills');
-        const skills = [
-            'Cybersecurity',
-            'Software Engineer', 
-            'Agile Developer',
-            'Application Developer',
-            'Competitive Programming ',
-        ];
-        
-        let currentSkillIndex = 0;
-        let currentCharIndex = 0;
-        let isDeleting = false;
-        
-        function typeSkills() {
-            const currentSkill = skills[currentSkillIndex];
-            
-            if (isDeleting) {
-                // Remove characters
-                skillsElement.textContent = currentSkill.substring(0, currentCharIndex - 1);
-                currentCharIndex--;
-                
-                if (currentCharIndex === 0) {
-                    isDeleting = false;
-                    currentSkillIndex = (currentSkillIndex + 1) % skills.length;
-                    setTimeout(typeSkills, 500); // Pause before typing next skill
-                } else {
-                    setTimeout(typeSkills, 50); // Faster deletion
-                }
-            } else {
-                // Add characters
-                skillsElement.textContent = currentSkill.substring(0, currentCharIndex + 1);
-                currentCharIndex++;
-                
-                if (currentCharIndex === currentSkill.length) {
-                    setTimeout(() => {
-                        isDeleting = true;
-                        typeSkills();
-                    }, 2000); // Pause before deleting
-                } else {
-                    setTimeout(typeSkills, 100); // Typing speed
-                }
-            }
-        }
-        
-        // Start the typewriter effect after page loads
-        setTimeout(typeSkills, 1500);
-
-        // Initialize animations on page load
-        window.addEventListener('load', () => {
-            // Trigger hero animations
-            const heroElements = document.querySelectorAll('#home .fade-in-up');
-            heroElements.forEach((el, index) => {
-                setTimeout(() => {
-                    el.classList.add('animate');
-                }, index * 200 + 500);
-            });
-        });
-
         // Smooth card hover effects
         document.querySelectorAll('.card-hover').forEach(card => {
             card.addEventListener('mouseenter', function() {
@@ -1362,6 +1568,5 @@
             });
         });
     </script>
-
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96d92d65c7e24829',t:'MTc1NDkzMDQ1NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
 </html>
